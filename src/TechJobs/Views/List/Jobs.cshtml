@@ -3,5 +3,29 @@
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
 @{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
+    // TODO #3 - Use the same list display from Views/Search/Index.cshtml
+    <form action="/Search/Results">
+    <h2>Search by:</h2>
+
+    <p>
+        @foreach (KeyValuePair<string, string> column in ViewBag.columns)
+        {
+            <span>
+                <input type="radio"
+                       name="searchType"
+                       id="@column.Key"
+                       value="@column.Key" 
+                       checked="@column.Key == 'all''"/>
+                <label for="@column.Key">@column.Value</label>
+            </span>
+        }
+    </p>
+
+    <p>
+        <label for="searchTerm">Keyword:</label>
+        <input type="text" name="searchTerm" id="searchTerm" />
+    </p>
+
+    <input type="submit" value="Search" />
+</form>
 }
